@@ -202,7 +202,7 @@ curl -L www.google.com
 ```
 
 c) To include headers -H flag
-````
+```
 curl -H "Authorization: Bearer 34151534" localhost:8000/api/auth
 ```
 
@@ -217,7 +217,69 @@ e) To output to a file -o flag
 curl -il www.example.com/ -o file.txt
 ```
 
-f) To parse json output we could pipe it to global node package jsome
+f) To parse json output we could pipe it to some program, like globally installed node package jsome
 ```
 curl www.site.com | jsome
 ```
+
+## Scripting
+a) To init JS project
+```
+touch init-js.sh
+echo "Initializing JS project at $(pwd)" # pwd - is current working directory
+git init
+npm init -y # create package.json with all defaults
+mkdir src
+touch src/index.js
+code . # to open in VS Code
+```
+Save file and then run with ```.init-js.sh```
+If you get persmission denied, with ```ls -l``` check first four flags ```-rw-``` 1. flag is file or director, then user permission, 2. read, 3. write and 4. execute. if 4th flag is ```-``` you don't have execute permission. This are default permissions settings.
+To change that write ```chmod u+x script.sh``` to add to the user execute permission. Now flags should be ```-rwx```
+
+If we want to execute this script from anywhere we must use ```$PATH``` variable.
+Type ```echo $PATH``` to see all folders where shell is looking for executables.
+To see from where node executable is rantype ```which node```
+To put our file in PATH ```cp init-js.sh /use/local/bin/init-js```
+Test it with ```which init-js```
+
+## Variables
+```
+my_var=12345 # Don't use spaces
+echo $my_var
+```
+Variables are scoped per script.
+
+To export my_var to be accessible outside of script
+```
+export my_var
+```
+
+To unset variable
+```
+unset my_var
+```
+
+To see all bash global variables
+```
+env
+```
+Common global var is USER, to reference it ```echo $USER```
+
+Script to clone a local branch from to temp folder
+```
+touch clone-to-temp.sh
+
+temp=$(mktemp -d)
+git clone --branch $1 $PWD $temp
+echo "branch $1 was cloned to $temp folder"
+# we can now run some test or task here...
+
+chmod u+x clone-to-temp.sh
+
+#test it with .clone-to-temp.sh new-temp-branch
+```
+
+
+
+
