@@ -184,3 +184,40 @@ e) Use regex with -e
 ```
 grep -e "[0-9]" file.tx
 ```
+
+## curl
+Output http response
+```
+curl www.google.com
+```
+
+a) To include headers use -i flag
+```
+curl -i www.google.com
+```
+
+b) By default curl won't follow redirect, if we want that we use L flag
+```
+curl -L www.google.com
+```
+
+c) To include headers -H flag
+````
+curl -H "Authorization: Bearer 34151534" localhost:8000/api/auth
+```
+
+d) To change http verb -X flag
+```
+curl -X POST -H "Content-Type: application/json" -d '{"name": "John"}' http://example.com/api/user
+# d is for body
+```
+
+e) To output to a file -o flag
+```
+curl -il www.example.com/ -o file.txt
+```
+
+f) To parse json output we could pipe it to global node package jsome
+```
+curl www.site.com | jsome
+```
