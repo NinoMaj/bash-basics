@@ -127,7 +127,7 @@ cp -R src/* dest/
 ```
 
 ## find
-To find something
+To find files and folders
 a) To find all txt files in my_folder, we would write
 ```
 find my_folder/ -name "*.txt" # btw, this is not regex
@@ -158,7 +158,29 @@ e) To run some operation on found files, like run imaginary encrypt on each txt 
 find my_important_folder/ -iname "*.txt" -exec encrypt
 ```
 
+## grep
+Find search term in files, every outputed line will be one search match
+a) Find version in lodash package
+```
+grep "version" node_modules/lodash/package.json
+```
 
+b) We can search multiple files
+```
+grep "version" node_modules/**/*.json
+```
 
+c) To colorize match, --color flag
+```
+grep --color "version" node_modules/**/*.json
+```
 
+d) To output two lines before and after found search term, we have context flag -C
+```
+grep -C 2 "term" file.txt
+```
 
+e) Use regex with -e
+```
+grep -e "[0-9]" file.tx
+```
