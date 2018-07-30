@@ -280,6 +280,67 @@ chmod u+x clone-to-temp.sh
 #test it with .clone-to-temp.sh new-temp-branch
 ```
 
+## Functions
+```
+greet() {
+  echo "Hello world"
+}
+
+greet # invoking the function
+```
+
+Passing a var to function is like a script
+```
+greet() {
+  echo "Hello $1"
+}
+
+greet "John"
+```
+
+We can save output
+```
+greet() {
+  echo "Hello $1"
+}
+
+saved_greeting = $(greet "John") # saved_greeting will be variable with "Hello John" value
+# if we had more than one echo command, both would be saved in var
+```
+
+We have global and local vars
+```
+global_var = 123
+
+greeting() {
+  local_var = 456 # accessible only inside this function
+}
+```
+
+## Conditionals
+E.g. Print USER if it John, else print false
+```
+if [[ $USER = 'John' ]]; then # not equal sign !=
+  echo $USER
+else
+  echo "false"
+fi
+```
+
+We can use && and ||
+```
+[[ $USER = 'John' ]] && echo $USER || echo "false
+```
 
 
+## Other
+Check exit status
+```
+echo $?
+```
+
+Pause of 5 seconds
+```
+sleep 5 # we can add m, h, d for minutes, hours or days
+```
 
