@@ -332,6 +332,22 @@ We can use && and ||
 [[ $USER = 'John' ]] && echo $USER || echo "false
 ```
 
+## Piping
+To see all chrome running processes in less program
+```
+ps ax | grep Chrome | less # ps ax to see all running processes
+```
+
+Gzip file.txt and show bytes
+```
+gzip -9 | wc -c # 9 is max compression, wc without c flag is for word count
+```
+This is outputed in memory, so new file is not created.
+
+To output to file
+```
+ls > ls.txt # >> to append
+```
 
 ## Other
 Check exit status
